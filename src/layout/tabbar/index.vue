@@ -11,7 +11,6 @@
 </template>
 
 <script setup lang="ts">
-import { de } from 'element-plus/es/locales.mjs';
 import Breadcrumb from './breadcrumb/index.vue'
 import Setting from './setting/index.vue'
 defineOptions({ name: 'Tabbar' })

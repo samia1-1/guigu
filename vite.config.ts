@@ -4,7 +4,6 @@ import { createSvgIconsPlugin } from 'vite-plugin-svg-icons'
 import { viteMockServe } from 'vite-plugin-mock'
 import vue from '@vitejs/plugin-vue'
 import path from 'path'
-import { en } from 'element-plus/es/locales.mjs'
 export default defineConfig(({ command, mode }) => {
   // 获取环境变量
   const env = loadEnv(mode, process.cwd());

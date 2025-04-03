@@ -46,4 +46,7 @@ export type AttrList = Attr[]; // 存储每一个属性对象的数组
 // 接口返回的数据ts类型
 export interface AttrResponseData extends ResponseData {
     data: AttrList; // 属性对象的数组
+    code: number; // 状态码
+    message: string; // 提示信息
+    ok: boolean; // 是否成功
 }
