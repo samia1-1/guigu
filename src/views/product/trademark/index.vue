@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="trademark-container">
     <el-card class="box-card">
       <el-button type="primary" size="default" icon="Plus" @click="addTrademark">添加品牌</el-button>
       <el-table style="margin: 10px 0px" border :data="trademarkArr" stripe>
@@ -251,5 +251,9 @@ const removeTrademark = async (id: number) => {
   width: 178px;
   height: 178px;
   text-align: center;
+}
+
+.trademark-container {
+  width: 100%;
 }
 </style>

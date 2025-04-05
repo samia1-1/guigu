@@ -38,14 +38,18 @@
 </template>
 
 <script setup lang="ts">
-// import { useRouter } from 'vue-router'
+import { useRouter } from 'vue-router'
+import { onMounted } from 'vue'
+
 defineOptions({ name: 'Menu' })
 defineProps(['menuList'])
-// const $router = useRouter()
-// const goRoute = (vc: any) => {
-//     //路由跳转
-//     $router.push(vc.index);
-// }
+
+const $router = useRouter()
+
+onMounted(() => {
+    // 检查路由表状态
+    console.log('菜单组件挂载完成，当前路由表:', $router.getRoutes().map(r => r.path));
+})
 </script>
 
 

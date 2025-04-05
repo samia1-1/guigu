@@ -55,6 +55,17 @@ export const constantRoute = [
       icon: 'Platform',
     },
   },
+  {
+    //刷新重定向
+    path: '/refresh-redirect',
+    name: 'RefreshRedirect',
+    component: () => import('@/views/redirect/index.vue'),
+    meta: {
+      title: '刷新中',
+      hidden: true,
+      icon: 'Loading',
+    },
+  },
 ]
 
 //异步路由

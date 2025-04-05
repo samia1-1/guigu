@@ -8,6 +8,19 @@ const useLayOutSettingStore = defineStore('SettingStore', {
       refsh: false, //仓库这个属性用于控制刷新效果
     }
   },
+  
+  actions: {
+    // 触发页面刷新的方法
+    refreshPage() {
+      this.refsh = !this.refsh;
+      console.log('页面刷新触发:', Date.now());
+    },
+    
+    // 切换菜单折叠状态
+    toggleFold() {
+      this.fold = !this.fold;
+    }
+  }
 })
 
 export default useLayOutSettingStore

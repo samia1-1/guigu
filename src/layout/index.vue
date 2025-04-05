@@ -36,6 +36,7 @@ import useLayOutSettingStore from '@/store/modules/setting';
 let LayOutSettingStore = useLayOutSettingStore()
 
 let $route=useRoute();
+
 </script>
 
 <style scoped lang="scss">
