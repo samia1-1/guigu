@@ -50,6 +50,10 @@ let $route=useRoute();
         background: $base-menu-background;
         transition:all 0.3s;
 
+        &.fold {
+            width: $base-menu-min-width;
+        }
+        
         .scrollbar {
             width: 100%;
             height: calc(100vh - $base-menu-logo-height);
