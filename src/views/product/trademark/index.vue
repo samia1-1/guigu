@@ -110,6 +110,7 @@ const getHasTrademark = async (val = 1) => {
 };
 
 onMounted(() => {
+  console.log("品牌管理页面已挂载");
   getHasTrademark();
 });
 // 添加品牌

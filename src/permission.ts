@@ -77,25 +77,13 @@ router.beforeEach(async (to, from, next) => {
           // 标记动态路由已添加
           dynamicRoutesAdded = true
           
-          // 更长的等待时间，确保路由完全注册
-          await new Promise(resolve => setTimeout(resolve, 300));
-          await nextTick();
+          // 确保路由完全注册
+          await new Promise(resolve => setTimeout(resolve, 100));
           
-          // 手动触发一次刷新，确保组件能正确挂载
-          settingStore.refreshPage();
-          
-          // 更强大的路由检查
-          console.log('准备导航到:', to.path);
-          if (isRouteAccessible(to)) {
-            console.log('✅ 路由可访问，准备导航:', to.path);
-            // 对于首次登录，总是导航到首页
-            if (from.path === '/login' && to.path === '/') {
-              next({ path: '/' });
-            } else {
-              next({ ...to, replace: true });
-            }
+          // 简化导航逻辑，不再强制刷新
+          if (to.matched.length > 0) {
+            next({ ...to, replace: true });
           } else {
-            console.warn(`⚠️ 路由 ${to.path} 不可访问，重定向到首页`);
             next({ path: '/' });
           }
         } catch (error) {
@@ -126,11 +114,6 @@ router.beforeEach(async (to, from, next) => {
 router.afterEach((to, from) => {
   nprogress.done()
   
-  // 特殊路由不触发刷新
-  if (to.path !== '/refresh-redirect' && to.path !== '/login' && to.name !== 'RefreshRedirect') {
-    // 路由跳转完成后延迟一小段时间再刷新组件，确保异步组件加载完成
-    setTimeout(() => {
-      refreshView();
-    }, 100);
-  }
+  // 移除此处的视图刷新逻辑，避免与transition冲突
+  // 路由完成后自然会触发组件更新
 })
