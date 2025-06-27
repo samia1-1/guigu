@@ -9,11 +9,8 @@ nprogress.configure({ showSpinner: false })
 import useUserStore from './store/modules/user.js'
 import pinia from './store/index.js'
 import { nextTick } from 'vue'
-// import { refreshView } from './utils/refresh-router.js'
-import useLayOutSettingStore from './store/modules/setting.js'
 
 const userStore = useUserStore(pinia)
-const settingStore = useLayOutSettingStore(pinia)
 
 // 添加路由状态标记，避免重复添加路由
 let dynamicRoutesAdded = false
@@ -77,12 +74,9 @@ router.beforeEach(async (to, from, next) => {
           // 标记动态路由已添加
           dynamicRoutesAdded = true
           
-          // 确保路由完全注册
-          await new Promise(resolve => setTimeout(resolve, 100));
-          
-          // 简化导航逻辑，不再强制刷新
+          // 简化导航逻辑
           if (to.matched.length > 0) {
-            next({ ...to, replace: true });
+            next();  // 直接放行，不使用replace模式
           } else {
             next({ path: '/' });
           }
@@ -113,7 +107,4 @@ router.beforeEach(async (to, from, next) => {
 //全局后置守卫
 router.afterEach((to, from) => {
   nprogress.done()
-  
-  // 移除此处的视图刷新逻辑，避免与transition冲突
-  // 路由完成后自然会触发组件更新
 })

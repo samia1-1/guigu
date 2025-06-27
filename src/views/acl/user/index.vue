@@ -125,7 +125,8 @@ let userRole = ref<AllRole>([]);
 let userParams = reactive<User>({
     username: '',
     name: '',
-    password: ''
+    password: '',
+    phone: ''  // 使用与API接口一致的string类型
 });
 //准备一个数组存储批量删除的用户的ID
 let selectIdArr = ref<User[]>([]);
@@ -340,7 +341,9 @@ const search = () => {
 }
 //重置按钮
 const reset = () => {
-    settingStore.refsh = !settingStore.refsh;
+    // 移除刷新触发，直接重新获取数据
+    keyword.value = '';
+    getHasUser(1);
 }
 </script>
 
